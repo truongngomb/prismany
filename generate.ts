@@ -60,7 +60,7 @@ const generate = () => {
         if (!clientPath) return console.error(`Error parsing client path from prisma generate output`);
 
         if (!sharedEngineCreated) {
-          const engineFile = readdirSync(clientPath).find((f) => f.startsWith('libquery_engine-'));
+          let engineFile = readdirSync(clientPath).find((f) => f.startsWith('libquery_engine-') || f == "query_engine-windows.dll.node");
           enginePath = `${outputPath}/shared/${engineFile}`;
           renameSync(`${clientPath}/${engineFile}`, enginePath);
           sharedEngineCreated = true;
